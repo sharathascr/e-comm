@@ -1,0 +1,23 @@
+/* Home.css */
+
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  background: #f9f9f9;
+  min-height: 100vh;
+}
+
+.home-header {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.home-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
