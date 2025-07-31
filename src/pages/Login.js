@@ -1,17 +1,49 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import "../styles/Login.css";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogin, setLogout } from "../store/slice/userSlice";
 
 function Login() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    // handle login logic here
-    console.log(data);
+  const { user, isLoggedIn } = useSelector((state) => state.userSlice);
+  const dispatch = useDispatch();
+  console.log("user and login", { user, isLoggedIn });
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4001/api/users/login",
+        data
+      );
+      if (response.data.message == "Login successful") {
+        dispatch(setLogin(response.data.data.username));
+        alert("Login Successful");
+        reset();
+      }
+      // Handle successful login (e.g., save token, redirect)
+      console.log("Login successful:", response.data);
+      // Example: localStorage.setItem("token", response.data.token);
+      // Example: window.location.href = "/dashboard";
+    } catch (error) {
+      // Handle error (e.g., show error message)
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        alert(`Login failed: ${error.response.data.message}`);
+      } else {
+        alert("Login failed: An unexpected error occurred.");
+      }
+    }
   };
 
   return (

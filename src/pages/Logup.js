@@ -1,18 +1,35 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import "../styles/Logup.css";
+import axios from "axios";
 
 function Logup() {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    // Simulate registration success
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4001/api/users/save-user",
+        data
+      );
+      if (response.status === 201) {
+        alert("Registration successful!");
+        reset();
+      } else {
+        alert("Unexpected response from server.");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert("User already exists.");
+      } else {
+        alert("An error occurred. Please try again.");
+      }
+    }
   };
   return (
     <div className="logup-container">
@@ -69,11 +86,11 @@ function Logup() {
             <div style={{ color: "red" }}>{errors.password.message}</div>
           )}
         </div>
-        {isSubmitSuccessful && (
+        {/* {isSubmitSuccessful && (
           <div style={{ color: "green", marginBottom: 8 }}>
             Registration successful!
           </div>
-        )}
+        )} */}
         <button type="submit" className="logup-btn ">
           Register
         </button>

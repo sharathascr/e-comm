@@ -1,0 +1,20 @@
+.cart-item-page {
+  display: flex;
+  /* border: 2px solid grey; */
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px grey;
+  margin-right: 20px;
+  padding-bottom: 10px;
+}
+.cart-product-image {
+  width: 200px;
+}
+.quantity-section {
+  margin: 5px;
+}
+.quantity-text {
+  margin-right: 10px;
+}
+.quantity-item {
+  margin: 10px;
+}

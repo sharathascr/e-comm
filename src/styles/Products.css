@@ -7,3 +7,78 @@
   margin-left: 20%;
   margin-top: 3%;
 }
+.suspense {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.suspense-image {
+  width: 250px;
+  height: 300px;
+  background-color: rgb(224, 221, 221);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+.suspense-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 60%
+  );
+  animation: wave 1.5s infinite;
+}
+
+/* .suspense-desc {
+  width: 250px;
+  height: 20px;
+  background-color: rgb(225, 223, 223);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+} */
+/* .suspense-desc::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 60%
+  );
+  animation: wave 1.5s infinite;
+} */
+
+.search-section {
+  flex-basis: 100%;
+  width: 100%;
+  margin-bottom: 20px;
+}
+#product-search-input {
+  display: block;
+  /* margin: 0 auto; */
+  width: 30%;
+  position: fixed;
+  left: 45%;
+  padding: 5px;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
